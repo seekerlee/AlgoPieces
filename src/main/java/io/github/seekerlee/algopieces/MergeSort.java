@@ -1,4 +1,4 @@
-package io.github.seekerlee;
+package io.github.seekerlee.algopieces;
 
 import java.util.Arrays;
 

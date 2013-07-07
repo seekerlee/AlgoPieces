@@ -1,21 +1,26 @@
 package io.github.seekerlee.algopieces;
 
-import io.github.seekerlee.MergeSort;
+import org.junit.Before;
+import org.junit.Test;
 
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Arrays;
 
+import static org.junit.Assert.assertEquals;
+
 /**
  * User: seeker
  * Date: 7/7/13
- * Time: 3:03 PM
+ * Time: 10:06 PM
  */
-public class MergeSortTest {
-    public static void main(String[] args) throws IOException {
-        InputStream in = MergeSortTest.class.getClassLoader().getResourceAsStream("IntegerArray.txt");
+public class MergeSortUnitTest {
+    private static MergeSort ms;
+    @Before
+    public void setUp() throws Exception {
+
+        InputStream in = MergeSortUnitTest.class.getClassLoader().getResourceAsStream("IntegerArray.txt");
         InputStreamReader isr = new InputStreamReader(in);
         BufferedReader br = new BufferedReader(isr);
         String line;
@@ -26,10 +31,14 @@ public class MergeSortTest {
             index ++;
         }
         br.close();
-        System.out.println(input);
-        MergeSort ms = new MergeSort(input);
+        System.out.println("init and sorting...");
+        ms = new MergeSort(input);
         System.out.println("done");
         System.out.println(Arrays.toString(ms.getArr()));
-        System.out.println(ms.getInversions());
+    }
+
+    @Test
+    public void InversionCorrect(){
+        assertEquals(ms.getInversions(), 2407905288L);
     }
 }

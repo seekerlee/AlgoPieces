@@ -6,9 +6,9 @@ import org.junit.Test;
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * User: seeker
@@ -32,13 +32,23 @@ public class MergeSortUnitTest {
         }
         br.close();
         System.out.println("init and sorting...");
+        long time0 = System.currentTimeMillis();
         ms = new MergeSort(input);
-        System.out.println("done");
-        System.out.println(Arrays.toString(ms.getArr()));
+        long time1 = System.currentTimeMillis();
+        System.out.println("done in " + (time1 - time0) + " millisecond.");
+        //System.out.println(Arrays.toString(ms.getArr()));
     }
 
     @Test
     public void InversionCorrect(){
         assertEquals(ms.getInversions(), 2407905288L);
+    }
+
+    @Test
+    public void SortedCorrect(){
+        int[] arr = ms.getArr();
+        for(int i = 0; i < arr.length - 1; i++){
+            assertTrue(arr[i] <= arr[i + 1]);
+        }
     }
 }

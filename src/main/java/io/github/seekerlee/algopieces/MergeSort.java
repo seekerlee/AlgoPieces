@@ -1,7 +1,5 @@
 package io.github.seekerlee.algopieces;
 
-import java.util.Arrays;
-
 /**
  * User: seeker
  * Date: 7/6/13
@@ -13,29 +11,29 @@ public class MergeSort {
     private long inversions = 0L;
     public MergeSort(int[] arr) {
         this.arr = arr;
-        mergeSort(0, arr.length);
+        sort(0, arr.length);
     }
 
-    public void mergeSort(final int startI, final int len) {
+    public void sort(final int startIndex, final int len) {
         if(len == 1) {
             return;
         }
-        mergeSort(startI, len / 2);
-        mergeSort(startI + len / 2, len - len / 2);
+        sort(startIndex, len / 2);
+        sort(startIndex + len / 2, len - len / 2);
         //merge
         int[] temp = new int[len];
-        int i = startI, j = startI + len / 2;
+        int i = startIndex, j = startIndex + len / 2;
         for(int ti = 0; ti < len; ti ++) {
-            if(i < startI + len / 2 && (j >= startI + len || lessThan(arr[i], arr[j], len / 2 - (i - startI)))) {
+            if(i < startIndex + len / 2 && (j >= startIndex + len || lessThan(arr[i], arr[j], len / 2 - (i - startIndex)))) {
                 temp[ti] = arr[i];
                 i ++;
-            } else if(j < startI + len) {
+            } else if(j < startIndex + len) {
                 temp[ti] = arr[j];
                 j ++;
             }
         }
         for(int ti = 0; ti < len; ti ++) {
-            arr[startI + ti] = temp[ti];
+            arr[startIndex + ti] = temp[ti];
         }
         return;
     }

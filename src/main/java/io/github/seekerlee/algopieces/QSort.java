@@ -29,8 +29,8 @@ public class QSort {
     }
 
     public static void main(String[] a) {
-        int[] arr = {10, 7, 6, 3, 5, 8, 2, 9, 0};
-        sort2(arr, 0, arr.length - 1);
+        int[] arr = {10, 7, 2, 9, 0};
+        sort3(arr, 0, arr.length - 1);
         for(int ii : arr) {
             System.out.println(ii);
         }
@@ -50,5 +50,38 @@ public class QSort {
         swap(arr, end, storeIndex);
         sort2(arr, begin, storeIndex - 1);
         sort2(arr, storeIndex + 1, end);
+    }
+
+    public static void sort3(int arr[], int left, int right) {
+        if(right <= left) return;
+
+        int pValue = arr[right];
+
+        int leftIndex = left;
+        int rightIndex = right;
+        while(true) {
+            if (leftIndex == rightIndex) break;
+            while(true) {
+                if(leftIndex == rightIndex) break;
+                if(arr[leftIndex] <= pValue) {
+                    leftIndex ++;
+                } else {
+                    break;
+                }
+            }
+            while(true) {
+                if (leftIndex == rightIndex) break;
+                if (arr[rightIndex] >= pValue) {
+                    rightIndex --;
+                } else {
+                    break;
+                }
+            }
+            swap(arr, leftIndex, rightIndex);
+        }
+        swap(arr, leftIndex, right);
+
+        sort3(arr, left, rightIndex - 1);
+        sort3(arr, rightIndex + 1, right);
     }
 }

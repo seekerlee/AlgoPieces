@@ -29,7 +29,7 @@ public class QSort {
     }
 
     public static void main(String[] a) {
-        int[] arr = {10, 7, 2, 9, 0};
+        int[] arr = {10, 9, 0};
         sort3(arr, 0, arr.length - 1);
         for(int ii : arr) {
             System.out.println(ii);
@@ -60,17 +60,16 @@ public class QSort {
         int leftIndex = left;
         int rightIndex = right;
         while(true) {
-            if (leftIndex == rightIndex) break;
-            while(true) {
-                if(leftIndex == rightIndex) break;
+            if (leftIndex >= rightIndex) break;
+            while(leftIndex < rightIndex) {
                 if(arr[leftIndex] <= pValue) {
                     leftIndex ++;
                 } else {
                     break;
                 }
             }
-            while(true) {
-                if (leftIndex == rightIndex) break;
+            while(leftIndex < rightIndex) {
+                if (leftIndex > rightIndex) break;
                 if (arr[rightIndex] >= pValue) {
                     rightIndex --;
                 } else {
